@@ -1,0 +1,15 @@
+body {
+  width: 50vw;
+  height: 50vh;
+  margin: 0 auto;
+  padding: 0;
+  position: relative; }
+
+#js-paper-plane {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  transform: rotate(50deg);
+  margin: 0 auto; }
+
+/*# sourceMappingURL=style.css.map */

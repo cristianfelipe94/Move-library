@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Arc move</title>
+</head>
+<body>
+  <img id="js-paper-plane" src="assets/paperplane.png"></img>
+  <script>
+    const paperPlane = document.getElementById('js-paper-plane');
+    function animate({duration, draw, timing}) {
+      let start = performance.now();
+      requestAnimationFrame(function animate(time) {
+        let timeFraction = (time - start) / duration;
+        if (timeFraction > 1) timeFraction = 1;
+
+        let progress = timing(timeFraction);
+
+        draw(progress);
+
+        if (timeFraction < 1) {
+          requestAnimationFrame(animate);
+        }
+      });
+    }
+    paperPlane.onclick = function() {
+      animate({
+        duration: 2000,
+        timing: (timeFraction) => {
+          return 1 - Math.sin(Math.acos(timeFraction));
+        },
+        draw: (progress) => {
+          const moveProgress = progress * 100;
+          paperPlane.style.left = `${moveProgress}%`;
+        }
+      });
+    };
+  </script>
+</body>
+</html>
